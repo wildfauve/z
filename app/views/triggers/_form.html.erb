@@ -1,0 +1,59 @@
+<div class="border-form">
+	<%= form_for @trigger do |form| %>
+		<% if @trigger.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@trigger.errors.count, "error") %> prohibited the type from being saved:</h2>
+
+				<ul>
+					<% @trigger.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+		<div class="field">
+			<%= form.label :name %>
+			<%= form.text_field :name %>
+		</div>
+		<div class="field">
+			<%= form.label :earn_on_free, "Earn on Free" %>			
+			<%= radio_button("trigger", "earn_on_free", "true") %>
+			<%= form.label :earn_on_free, "Don't Earn on Free" %>						
+			<%= radio_button("trigger", "earn_on_free", "false") %>			
+		</div>
+		<div class="field">
+			<%= form.label :threshold %>
+			<%= form.text_field :threshold %>
+		</div>
+		<div class="field">
+			<%= form.label :auto_burn, "Auto Burn" %>
+			<%= radio_button("trigger", "auto_burn", "true") %>
+			<%= form.label :auto_burn, "No Auto Burn" %>			
+			<%= radio_button("trigger", "auto_burn", "false") %>
+		</div>
+		<div class="field">
+			<%= form.label :auto_voucher, "Auto Voucher" %>
+			<%= radio_button("trigger", "auto_voucher", "true") %>
+			<%= form.label :auto_voucher, "No Auto Voucher" %>			
+			<%= radio_button("trigger", "auto_voucher", "false") %>
+		</div>
+		<div class="field">
+			<%= form.label :adjustment %>
+			<%= form.text_field :adjustment %>
+		</div>
+		<div class="field">
+			<%= form.label :potential_voucher_on_threshold, "Potential Voucher on Threshold" %>
+			<%= radio_button("trigger", "potential_voucher_on_threshold", "true") %>
+			<%= form.label :potential_voucher_on_threshold, "No Potential Voucher on Threshold" %>			
+			<%= radio_button("trigger", "potential_voucher_on_threshold", "false") %>
+		</div>
+		<div>
+			<p>
+				<%= form.submit "Create", :class => "form-submit-button" %>
+			</p>
+		</div>
+			
+	<%end%>
+
+</div>
+</br>

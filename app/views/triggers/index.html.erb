@@ -1,0 +1,42 @@
+<%= link_to 'New Currency Trigger', new_trigger_path %>
+<table class="table table-striped">
+  <thead>
+    <tr>	
+		<th>Currency Name</th>
+		<th>Threshold</th>
+		<th>Earn on Free</th>
+		<th>Auto Burn</th>
+		<th>Auto Voucher</th>
+		<th>Adjustment</th>				
+		<th>Potential Voucher on Threshold</th>	
+		<th>Actions</th>		
+	</tr>
+  </thead>
+  <tbody>
+	<% for t in @triggers %>
+		<tr>
+			<td>
+				<%= link_to t.name, trigger_path(t) %>
+			</td>	
+			<td>
+				<%= t.threshold %>
+			</td>
+			<td>
+				<%= t.earn_on_free %>
+			</td>
+			<td>
+				<%= t.auto_burn %>
+			</td>
+			<td>
+				<%= t.auto_voucher %>
+			</td>
+			<td>
+				<%= t.adjustment %>
+			</td>
+			<td>
+				<%= t.potential_voucher_on_threshold %>
+			</td>
+			<td><%= link_to 'Edit', edit_trigger_path(t)%></td>
+		</tr>
+	<%end%>	
+</table>
