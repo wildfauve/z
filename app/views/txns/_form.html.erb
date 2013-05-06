@@ -1,0 +1,28 @@
+<div class="border-form">
+	<%= form_for @txn do |form| %>
+		<% if @txn.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@txn.errors.count, "error") %> prohibited the type from being saved:</h2>
+
+				<ul>
+					<% @txn.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+		<div class="field">
+			<%= form.label :order_qty %>
+			<%= form.text_field :order_qty %>
+		</div>
+		<%= select_tag(:member, options_for_select(mbr_list), :include_blank => true, :prompt => "Select a Member", :class => "member") %>		
+		<div>
+			<p>
+				<%= form.submit "Create", :class => "form-submit-button" %>
+			</p>
+		</div>
+
+	<%end%>
+
+</div>
+</br>

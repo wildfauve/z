@@ -1,0 +1,40 @@
+
+<table class="table table-striped">
+  <thead>
+    <tr>	
+		<th>Name</th>
+		<th>Points</th>
+		<th>Total Points</th>
+		<th>Vouchers</th>
+		<th>On Next Purchase</th>			
+		<th>Actions</th>		
+	</tr>
+  </thead>
+  <tbody>
+	<% for m in @members %>
+		<tr>
+			<td>
+				<%= link_to m.name, member_path(m) %>
+			</td>	
+			<td>
+				<%= m.points %>
+			</td>	
+			<td>
+				<%= m.total_pts %>
+			</td>	
+			<td>
+				<%= m.vouchers %>
+				<% if m.vouchers > 0 %>
+					<%= link_to 'Burn', burn_member_path(m), :method => :post%>
+				<% end %>
+			</td>	
+			<td>
+				<%= m.voucher_on_next %>
+			</td>	
+			<td>
+				<%= link_to 'Edit', edit_member_path(m)%>
+				<%= link_to 'Reset', reset_member_path(m), :method => :post%>
+			</td>
+		</tr>
+	<%end%>	
+</table>

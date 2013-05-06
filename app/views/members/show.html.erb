@@ -1,0 +1,6 @@
+<p><%= @member.name %></p>
+<p> Points: <%= @member.points %> </p>
+
+<p> Vouchers <%= @member.vouchers %></p>
+
+<p> <%= link_to 'Reset Member', reset_member_path(@member), :method => :post%> 

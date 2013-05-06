@@ -7,8 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	
+    <div class="container">
+        <div class="row">
+          <div class="span9">
+            <%= bootstrap_flash %>
+            <%= yield %>
+          </div>
+          <div class="span3">
+            <div class="well sidebar-nav">
+              <ul class="nav nav-list">
+				<li class="nav-header">Sidebar</li>
+				<li><%= link_to "Transactions", txns_path  %></li>
+				<li><%= link_to "Members", members_path  %></li>
+				<li><%= link_to "New Transaction", new_txn_path  %></li>
+				<li><%= link_to "New Member", new_member_path  %></li>
+				<li><%= link_to "Triggers", triggers_path  %></li>
+              </ul>
+            </div><!--/.well -->
+          </div><!--/span-->
+        </div><!--/row-->
+	</div><!--/container-->
 
-<%= yield %>
 
 </body>
 </html>

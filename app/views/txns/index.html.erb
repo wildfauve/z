@@ -1,0 +1,27 @@
+<table class="table table-striped">
+  <thead>
+    <tr>	
+		<th>Id</th>
+		<th>Qty</th>		
+		<th>Member</th>
+		<th>Actions</th>		
+	</tr>
+  </thead>
+  <tbody>
+	<% for t in @txns %>
+		<tr>
+			<td>
+				<%= link_to t.id, txn_path(t) %>
+			</td>	
+			<td>
+				<%= t.order_qty %>
+			</td>
+			<td>
+				<%= link_to t.member.name, member_path(t.member) %>
+			</td>
+			<td><%= link_to 'Edit', edit_txn_path(t)%></td>
+		</tr>
+	<%end%>	
+</table>
+
+<%= link_to 'Delete All', deleteall_txns_path, :method => :post%>

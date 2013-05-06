@@ -26,6 +26,10 @@
 			<%= form.text_field :threshold %>
 		</div>
 		<div class="field">
+			<%= form.label :voucher_value %>
+			<%= form.text_field :voucher_value %>
+		</div>
+		<div class="field">
 			<%= form.label :auto_burn, "Auto Burn" %>
 			<%= radio_button("trigger", "auto_burn", "true") %>
 			<%= form.label :auto_burn, "No Auto Burn" %>			

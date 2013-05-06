@@ -9,6 +9,7 @@ class Trigger
   field :auto_voucher, :type => Boolean
   field :adjustment, :type => Integer
   field :potential_voucher_on_threshold, :type => Boolean
+  field :voucher_value, :type => Integer
   
   def self.create_it(params)
     trig = self.new(params)  
