@@ -7,8 +7,7 @@
 		<th>Balance</th>
 		<th>Qty Purchased</th>
 		<th>Total Free</th>
-		<th>Cards</th>		
-		<th>Vouchers</th>
+		<th>Vouchers</th>		
 		<th>On Next Purchase</th>			
 		<th>Actions</th>		
 	</tr>
@@ -50,7 +49,7 @@
 					<% end %>
 				</td>									
 				<td>
-					<%= m.voucher_on_next %>					
+					<%= currency.voucher_on_next %>					
 				</td>	
 				<td>
 					<%= link_to 'Edit', edit_member_path(m)%>

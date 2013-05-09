@@ -26,7 +26,7 @@ class Txn
   end
   
   def self.calc_points(qty, mbr, trigger)
-    Rails.logger.info(">>>Txn#calc_points Start Qty: #{qty},  Current Member Points: #{mbr.points}")     
+    Rails.logger.info(">>>Txn#calc_points Start Qty: #{qty},  Current Member Points: #{mbr.currency.balance}")     
     calc = mbr.currency.balance + qty
     
     if calc >= trigger.threshold  # have they reached a possible threshold?
