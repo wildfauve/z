@@ -12,48 +12,80 @@
 			</div>
 		<% end %>
 		<div class="field">
-			<%= form.label :name %>
-			<%= form.text_field :name %>
+			<%= form.label :currency_name %>
+			<%= form.text_field :currency_name %>
 		</div>
-		<div class="field">
-			<%= form.label :earn_on_free, "Earn on Free" %>			
-			<%= radio_button("trigger", "earn_on_free", "true") %>
-			<%= form.label :earn_on_free, "Don't Earn on Free" %>						
-			<%= radio_button("trigger", "earn_on_free", "false") %>			
-		</div>
-		<div class="field">
-			<%= form.label :threshold %>
-			<%= form.text_field :threshold %>
-		</div>
-		<div class="field">
-			<%= form.label :voucher_value %>
-			<%= form.text_field :voucher_value %>
-		</div>
-		<div class="field">
-			<%= form.label :auto_burn, "Auto Burn" %>
-			<%= radio_button("trigger", "auto_burn", "true") %>
-			<%= form.label :auto_burn, "No Auto Burn" %>			
-			<%= radio_button("trigger", "auto_burn", "false") %>
-		</div>
-		<div class="field">
-			<%= form.label :auto_voucher, "Auto Voucher" %>
-			<%= radio_button("trigger", "auto_voucher", "true") %>
-			<%= form.label :auto_voucher, "No Auto Voucher" %>			
-			<%= radio_button("trigger", "auto_voucher", "false") %>
-		</div>
-		<div class="field">
-			<%= form.label :adjustment %>
-			<%= form.text_field :adjustment %>
-		</div>
-		<div class="field">
-			<%= form.label :potential_voucher_on_threshold, "Potential Voucher on Threshold" %>
-			<%= radio_button("trigger", "potential_voucher_on_threshold", "true") %>
-			<%= form.label :potential_voucher_on_threshold, "No Potential Voucher on Threshold" %>			
-			<%= radio_button("trigger", "potential_voucher_on_threshold", "false") %>
-		</div>
+		<p>
+			<div class="field">
+				<%= form.label :earn_on_free, "Yes Earn on Free" %>			
+				<%= radio_button("trigger", "earn_on_free", "true") %>
+				<%= form.label :earn_on_free, "Don't Earn on Free" %>						
+				<%= radio_button("trigger", "earn_on_free", "false") %>			
+			</div>
+		</p>
+		<p>		
+			<div class="field">
+				<%= form.label :threshold %>
+				<%= form.text_field :threshold %>
+			</div>
+		</p>
+		<p>
+			<div class="field">
+				<%= form.label :voucher_value %>
+				<%= form.text_field :voucher_value %>
+			</div>
+		</p>
+		<p>
+			<div class="field">
+				<%= form.label :number_of_vouchers %>
+				<%= form.text_field :number_of_vouchers %>
+			</div>
+		</p>
+		<p>
+			<div class="field">
+				<%= form.label :auto_burn, "Yes Auto Burn" %>
+				<%= radio_button("trigger", "auto_burn", "true") %>
+				<%= form.label :auto_burn, "No Auto Burn" %>			
+				<%= radio_button("trigger", "auto_burn", "false") %>
+			</div>
+		</p>
+		<p>
+			<div class="field">
+				<%= form.label :auto_voucher, "Yes Auto Voucher" %>
+				<%= radio_button("trigger", "auto_voucher", "true") %>
+				<%= form.label :auto_voucher, "No Auto Voucher" %>			
+				<%= radio_button("trigger", "auto_voucher", "false") %>
+			</div>
+		</p>
+		<p>
+			<div class="field">
+				<%= form.label :earn_adjustment %>
+				<%= form.text_field :earn_adjustment %>
+			</div>
+		</p>
+		<p>
+			<div class="field">
+				<%= form.label :burn_adj %>
+				<%= form.text_field :burn_adj %>
+			</div>
+		</p>
+		<p>
+			<div class="field">
+				<%= form.label :potential_voucher_on_threshold, "Yes Potential Voucher on Threshold" %>
+				<%= radio_button("trigger", "potential_voucher_on_threshold", "true") %>
+				<%= form.label :potential_voucher_on_threshold, "No Potential Voucher on Threshold" %>			
+				<%= radio_button("trigger", "potential_voucher_on_threshold", "false") %>
+			</div>
+		</p>
+		<p>
+			<div class="field">
+				<%= form.label :earn_context %>
+				<%= form.text_field :earn_context %>
+			</div>		
+		</p>
 		<div>
 			<p>
-				<%= form.submit "Create", :class => "form-submit-button" %>
+				<%= form.submit "Submit", :class => "form-submit-button" %>
 			</p>
 		</div>
 			

@@ -16,6 +16,8 @@
 			<%= form.text_field :order_qty %>
 		</div>
 		<%= select_tag(:member, options_for_select(mbr_list), :include_blank => true, :prompt => "Select a Member", :class => "member") %>		
+		<%= select_tag(:trigger, options_for_select(trigger_list), :include_blank => true, :prompt => "Select a Trigger", :class => "trigger") %>		
+		
 		<div>
 			<p>
 				<%= form.submit "Create", :class => "form-submit-button" %>

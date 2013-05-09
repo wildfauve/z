@@ -1,6 +1,13 @@
-<p><%= @member.name %></p>
+<h2><%= @member.name %></h2>
 <p> Points: <%= @member.points %> </p>
 
-<p> Vouchers <%= @member.vouchers %></p>
+<p> Voucher Count: <%= @member.voucher_ct %></p>
+<p> Vouchers:</p>
+<% for v in @member.vouchers%>
+<p>
+	Unit: <%= v.unit%>
+	Burned: <%= v.burned %>
+</p>					
+<% end %>
 
 <p> <%= link_to 'Reset Member', reset_member_path(@member), :method => :post%> 

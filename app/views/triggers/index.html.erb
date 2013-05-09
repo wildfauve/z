@@ -1,15 +1,17 @@
-<%= link_to 'New Currency Trigger', new_trigger_path %>
 <table class="table table-striped">
   <thead>
     <tr>	
 		<th>Currency Name</th>
 		<th>Threshold</th>
 		<th>Voucher Value</th>
+		<th>Number of Vouchers</th>
 		<th>Earn on Free</th>
 		<th>Auto Burn</th>
 		<th>Auto Voucher</th>
-		<th>Adjustment</th>				
-		<th>Potential Voucher on Threshold</th>	
+		<th>Earn Adjustment</th>
+		<th>Burn Adjustment</th>				
+		<th>Tell POS Voucher on next Visit</th>	
+		<th>Context</th>
 		<th>Actions</th>		
 	</tr>
   </thead>
@@ -17,13 +19,16 @@
 	<% for t in @triggers %>
 		<tr>
 			<td>
-				<%= link_to t.name, trigger_path(t) %>
+				<%= link_to t.currency_name, trigger_path(t) %>
 			</td>	
 			<td>
 				<%= t.threshold %>
 			</td>
 			<td>
 				<%= t.voucher_value %>
+			</td>
+			<td>
+				<%= t.number_of_vouchers %>
 			</td>
 			<td>
 				<%= t.earn_on_free %>
@@ -35,12 +40,19 @@
 				<%= t.auto_voucher %>
 			</td>
 			<td>
-				<%= t.adjustment %>
+				<%= t.earn_adjustment %>
+			</td>
+			<td>
+				<%= t.burn_adj %>
 			</td>
 			<td>
 				<%= t.potential_voucher_on_threshold %>
+			</td>
+			<td>
+				<%= t.earn_context %>
 			</td>
 			<td><%= link_to 'Edit', edit_trigger_path(t)%></td>
 		</tr>
 	<%end%>	
 </table>
+<%= link_to 'New Currency Trigger', new_trigger_path %>

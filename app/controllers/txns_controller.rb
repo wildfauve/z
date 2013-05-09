@@ -28,7 +28,8 @@ class TxnsController < ApplicationController
   def create
 #    Rails.logger.info(">>>Type Controller>>CREATE: #{params.inspect}, #{request.format}")
     @member = Member.find(params[:member])
-    @txn = Txn.create_it(params[:txn], @member)
+    @trigger = Trigger.find(params[:trigger])
+    @txn = Txn.create_it(params[:txn], @member, @trigger)
     respond_to do |format|
       if @txn.valid?
         format.html { redirect_to members_path }

@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
 
   def index
-    @members = Member.all
+    @members = Member.all.asc(:name)
   end
 
   def show
@@ -85,7 +85,21 @@ class MembersController < ApplicationController
   
   def burn
     @member = Member.find(params[:id])
-    @member.burn_voucher
+    @member.burn_voucher(@member.vouchers.find(params[:voucher]))
+    respond_to do |format|
+      if @member.valid?
+        format.html { redirect_to members_path }
+        format.json
+      else
+        format.html { render action: "edit" }
+        format.json
+      end
+    end
+  end
+
+  def burn_card
+    @member = Member.find(params[:id])
+    @member.burn_card(:card => params[:card], :currency => params[:currency])
     respond_to do |format|
       if @member.valid?
         format.html { redirect_to members_path }

@@ -1,77 +1,73 @@
 class Member
   
+  attr_accessor :currency
+  
   include Mongoid::Document
   
   has_many :txn
+  embeds_many :currencies
+  embeds_many :vouchers
   
   field :name, :type => String
-  field :points, :type => Integer
-  field :vouchers, :type => Integer
-  field :total_pts, :type => Integer
-  field :voucher_on_next, :type => Boolean
   
   def self.create_it(params)
     mbr = self.new(params)
-    mbr.vouchers = 0
-    mbr.points = 0
-    mbr.total_points = 0  
-    mbr.voucher_on_next = false
     mbr.save!
 #    Rails.logger.info(">>>Type#create_the_type #{type.properties.count}")     
     return mbr
   end
+  
+  def self.resetall
+    self.all.each {|m| m.reset}
+  end
+  
+  def selected_currency=(trigger)
+   Rails.logger.info(">>>Member#selected_currency #{@currency.inspect}")          
+   @currency = Currency.findfactory(self, trigger)
+  end
 
   def update_it(params)
-    self.attributes = params       
+    self.attributes = params
     save!
     return self
   end
-  
-  def balance
-    self.points
-  end
-  
+    
   def update_points(qty, remove=false)
-    Rails.logger.info(">>>Mbr#update_points Qty: #{qty}, Current Points: #{self.points}")     
+    Rails.logger.info(">>>Mbr#update_points Qty: #{qty}, Current Points: #{@currency.points}")     
     if remove
       Rails.logger.info(">>>Mbr#update_points remove threshold")
-      self.points -= qty
+      @currency.points -= qty
     else
-      self.points += qty
-      self.total_pts += qty
+      @currency.points += qty
+      @currency.total_pts += qty
     end
-    Rails.logger.info(">>>Mbr#update_points Points Update: #{self.points}")         
+    Rails.logger.info(">>>Mbr#update_points Points Update: #{@currency.points}")         
     save!    
   end
   
-  def add_voucher(qty)
-    Rails.logger.info(">>>Mbr#add_voucher Qty: #{qty}, Current Points: #{self.points}")         
-    self.vouchers += 1
-    self.total_pts += qty
-    self.voucher_on_next = false
+  def add_voucher(qty, trigger)
+    Rails.logger.info(">>>Mbr#add_voucher Qty: #{qty}, Current Points: #{@currency.points}")
+    @currency.create_card(qty)
+    Rails.logger.info(">>>Mbr#add_voucher currency: #{@currency.inspect}")    
     save!
   end
   
   def reset
-    self.vouchers = 0
-    self.points = 0
-    self.total_pts = 0
-    self.voucher_on_next = false
+    self.currencies = nil
     save!
   end
   
-  def create_voucher_on_next
+  def create_voucher_on_next(trigger)
     Rails.logger.info(">>>Mbr#voucher_on_next ")             
-    self.voucher_on_next = true
+    @currency.create_voucher_on_next
     save!
   end
-  
-  def burn_voucher
-    Rails.logger.info(">>>Mbr#burn_voucher")
-    raise Exceptions::NoVoucherError if self.vouchers < 1
-    self.vouchers -= 1
-    self.points -= Trigger.first.voucher_value
-    self.save!
+    
+  def burn_card(params)
+    Rails.logger.info(">>>Mbr#burn_card; #{params.inspect}")     
+     @currency = self.currencies.find(params[:currency])
+     @currency.burn_card(:card => params[:card])
+     self.save!
   end
-  
+    
 end

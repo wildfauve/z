@@ -9,8 +9,10 @@ Z::Application.routes.draw do
     member do
       post "reset"
       post "burn"
+      post "burn_card"
     end
   end
+  resources :reset, :only => [:create]
   
 
 end
