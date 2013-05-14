@@ -15,6 +15,7 @@ class Trigger
   field :number_of_vouchers, :type => Integer
   field :burn_adj, :type => Integer  
   field :earn_context, :type => String
+  field :expires_in, :type => Date
   
   def self.create_it(params)
     trig = self.new(params)  
